@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+{% comment "this inherent of base.html then we can use bootstrap tags" %}
+
+ {% endcomment %}
+<div class="col-sm-9">
+    {% for post in posts %}
+        <div class="mb-4">
+            <h3><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h3>
+            <small>Posted on {{ post.date }}</small>
+            <hr>{% comment "separated line" %}
+            <p class="text-muted">
+                {{ post.text|linebreaks|safe|truncatewords:100 }}
+                <a href="{% url 'post-detail' post.pk %}">[Read More]</a>
+            </p>
+            {% endcomment %}
+            {# badge matches Category title #}
+            <a href="{% url 'post-list' post.category.slug %}" class="badge badge-info">
+                {{ post.category.name|capfirst}}
+            </a>
+        </div>
+    {% empty %}
+    {# treatment category fictive #}
+    <div class="text-center">
+        <p class="display-1">:-(</p>
+        {# :-( smiley unhappy#}
+        <h3 class="mt-4">
+            Sorry no posts for the category <span class="badge badge-info">{{ category.name }}</span>
+        </h3>
+    </div>
+
+    {% endfor %}
+</div>
+
+{# Second column for display categories of posts #}
+<div class="col-sm-3">
+    <h5>Categories</h5>
+    <ul class="list-unstyled">
+        {% for cat in categories %}
+        <li>
+            <a href="{% url 'post-list' cat.slug %}"
+               class="badge badge-secondary">
+                {# keep same badge for uniformity #}
+                {{ cat.name|capfirst }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}

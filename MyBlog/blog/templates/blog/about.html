@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+{% block content %}
+
+<div class="col-12">
+    <h1>My first blog with Django Framework </h1>
+    <div class="row">
+        <div class="col-md-9">
+            <p class="lead">
+                DjangoThe web framework for perfectionists with deadlines.
+            </p>
+            <p class="text-center">
+                The Django Software Foundation deeply values the diversity of our developers, users, and community. We are distraught by the suffering, oppression, and systemic racism the Black community faces every day. We can no longer remain silent.
+
+                In silence, we are complicit. To eradicate racism, xenophobia, and all other forms of inequality, we must take action. It is our responsibility and our honour to use our platform to amplify the voices of the oppressed and marginalised.
+
+                We ask today—and always—that the Django community comes together in support of the Black community. They will be heard.
+
+                #BlackLivesMatter
+            </p>
+        </div>
+
+<!--        class img-fluid allows to adjust image size to column -->
+        <div class="col-md-3">
+            <img src="{% static 'img/images.jpg'%}" class="img-fluid">
+        </div>
+    </div>
+</div>
+{% endblock content %}
